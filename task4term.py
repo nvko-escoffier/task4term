@@ -12,9 +12,11 @@ def initial_menu():
     print("What do you want to do ?")
     print("[1] Create a task")
     print("[2] Delete a task")
-    print("[4] Show tasks in progress")
-    print("[5] Show tasks done")
-    print("[6] Show all tasks")
+    print("[3] From In-Progress to Done")
+    print("[4] From Done to In-Progress")
+    print("[5] Show tasks in progress")
+    print("[6] Show tasks done")
+    print("[7] Show all tasks")
     print("[9] Exit")
 
 
@@ -23,11 +25,15 @@ def choix(choice):
         task_add()
     elif choice == 2:
         task_del()
+    elif choice == 3:
+        from_inprog_to_done()
     elif choice == 4:
-        func_task_inprog()
+        from_done_to_inprog()
     elif choice == 5:
-        func_task_done()
+        func_task_inprog()
     elif choice == 6:
+        func_task_done()
+    elif choice == 7:
         task_show()
     elif choice == 9:
         print("Exiting the program ...")
@@ -62,6 +68,20 @@ def task_del():
         time.sleep(2)
         task_del()
     time.sleep(1)
+
+
+def from_inprog_to_done():
+    for idx_inprog, val_inprog in enumerate(task_inprog):
+        print(idx_inprog, "-", val_inprog)
+    inprog_change_status = input("from IN-PROGRESS to DONE (number) ? ")
+    task_done.append(task_inprog.pop(int(inprog_change_status)))
+
+
+def from_done_to_inprog():
+    for idx_done, val_done in enumerate(task_done):
+        print(idx_done, "-", val_done)
+    done_change_status = input("from DONE to IN-PROGRESS (number) ? ")
+    task_inprog.append(task_done.pop(int(done_change_status)))
 
 
 def func_task_inprog():
