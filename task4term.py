@@ -10,14 +10,14 @@ task_done = []
 
 def initial_menu():
     print("What do you want to do ?")
-    print("[1] Create a task")
-    print("[2] Delete a task")
-    print("[3] From In-Progress to Done")
-    print("[4] From Done to In-Progress")
-    print("[5] Show tasks in progress")
-    print("[6] Show tasks done")
-    print("[7] Show all tasks")
-    print("[9] Exit")
+    print("  [1] Create a task")
+    print("  [2] Delete a task")
+    print("  [3] From In-Progress to Done")
+    print("  [4] From Done to In-Progress")
+    print("  [5] Show tasks in progress")
+    print("  [6] Show tasks done")
+    print("  [7] Show all tasks")
+    print("  [9] Exit")
 
 
 def choix(choice):
@@ -71,27 +71,58 @@ def task_del():
 
 
 def from_inprog_to_done():
+    system("clear")
+    if len(task_inprog) == 0:
+        print("There isn't any tasks In-Progress.")
+        time.sleep(2)
+        return
+
     for idx_inprog, val_inprog in enumerate(task_inprog):
         print(idx_inprog, "-", val_inprog)
-    inprog_change_status = input("from IN-PROGRESS to DONE (number) ? ")
+    inprog_change_status = input("from status IN-PROGRESS to DONE (number) ? ")
     task_done.append(task_inprog.pop(int(inprog_change_status)))
 
 
 def from_done_to_inprog():
+    system("clear")
+    if len(task_done) == 0:
+        print("There isn't any tasks Done")
+        time.sleep(2)
+        return
+
     for idx_done, val_done in enumerate(task_done):
         print(idx_done, "-", val_done)
-    done_change_status = input("from DONE to IN-PROGRESS (number) ? ")
+    done_change_status = input("from status DONE to IN-PROGRESS (number) ? ")
     task_inprog.append(task_done.pop(int(done_change_status)))
 
 
 def func_task_inprog():
-    print("Choice n°4. (NOTHING HERE YET)")
-    time.sleep(1)
+    if len(task_inprog) == 0:
+        print("There isn't any tasks In-Progress.")
+        time.sleep(2)
+        return
+
+    system("clear")
+    print("Current task(s) with IN-PROGRESS status:")
+    for idx_inprog, val_inprog in enumerate(task_inprog):
+        print(idx_inprog, "-", val_inprog)
+
+    input("\nPress Enter to continue...")
 
 
 def func_task_done():
-    print("Choice n°5. (NOTHING HERE YET)")
-    time.sleep(1)
+    system("clear")
+
+    if len(task_done) == 0:
+        print("There isn't any task with status DONE.")
+        time.sleep(2)
+        return
+
+    print("Current task(s) with DONE status:")
+    for idx_done, val_done in enumerate(task_done):
+        print(idx_done, "-", val_done)
+
+    input("\nPress Enter to continue...")
 
 
 def task_show():
