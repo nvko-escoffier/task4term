@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# Author: Julien ESCOFFIER
+# Email: julien.escoffier@protonmail.com
 
 import time
 import sys
